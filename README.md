@@ -1,0 +1,2 @@
+# AffectedCrystal
+Crystalというアプリのオマージュを作ろうとしてどこか間違えたアプリ
