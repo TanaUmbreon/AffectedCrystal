@@ -1,13 +1,15 @@
 ﻿Imports System.IO
 Imports System.Runtime.Serialization
 Imports System.Runtime.Serialization.Formatters.Binary
+Imports System.Text
+Imports Newtonsoft.Json
 
 ''' <summary>Crystalのまねごとをするフォームです</summary>
 Public Class MainForm
 
 #Region "フィールド"
 
-    Private Const AppConfFileName As String = "affectedcrystal.conf"
+    Private Const AppConfFileName As String = "affectedcrystal.json"
 
     ''' <summary>アプリケーションの設定情報</summary>
     Private appConf As AppConfig
@@ -82,18 +84,16 @@ Public Class MainForm
     ''' <summary>アプリケーションの設定情報を読み込み、取得します</summary>
     ''' <remarks>読み込みに失敗した場合は規定の設定情報が返ります</remarks>
     Private Function LoadAppConf() As AppConfig
-        Dim appConf As AppConfig
-
         Try
-            Using fs As New FileStream(AppConfFileName, FileMode.Open)
-                Dim bf As New BinaryFormatter()
-                appConf = DirectCast(bf.Deserialize(fs), AppConfig)
+            Using fs As New StreamReader(path:=AppConfFileName, encoding:=Encoding.UTF8),
+                  reader As New JsonTextReader(fs)
+
+                Dim serializer As New JsonSerializer()
+                Return serializer.Deserialize(Of AppConfig)(reader)
             End Using
         Catch ex As Exception
-            appConf = New AppConfig()
+            Return New AppConfig()
         End Try
-
-        Return appConf
     End Function
 
     ''' <summary>アプリケーションの設定情報を保存します</summary>
@@ -105,9 +105,13 @@ Public Class MainForm
         End With
 
         Try
-            Using fs As New FileStream(AppConfFileName, FileMode.Create)
-                Dim bf As New BinaryFormatter()
-                bf.Serialize(fs, appConf)
+            Using fw As New StreamWriter(path:=AppConfFileName, append:=False, encoding:=Encoding.UTF8),
+                  writer As New JsonTextWriter(fw)
+
+                Dim serializer As New JsonSerializer() With {
+                    .Formatting = Formatting.Indented
+                }
+                serializer.Serialize(writer, appConf)
             End Using
         Catch ex As Exception
             ' 書き込み失敗時は何もしない

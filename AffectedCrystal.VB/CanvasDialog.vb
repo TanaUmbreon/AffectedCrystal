@@ -1,6 +1,5 @@
 ﻿''' <summary>キャンバスサイズを設定するダイアログフォームです</summary>
 Public Class CanvasDialog
-
     Private _drawingConf As New DrawingConfig()
 
     ''' <summary>フォームをダイアログウィンドウで表示します</summary>
