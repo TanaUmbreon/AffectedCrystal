@@ -249,7 +249,7 @@ Public Class MainForm
         DisposeFields()
     End Sub
 
-    Private Sub tsmiExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiExit.Click
+    Private Sub TsmiExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiExit.Click
         Me.Close()
     End Sub
 
@@ -258,7 +258,7 @@ Public Class MainForm
         ApplyCanvas()
     End Sub
 
-    Private Sub tsmiCanvas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiCanvas.Click
+    Private Sub TsmiCanvas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiCanvas.Click
         Using csd As New CanvasDialog()
             With csd
                 .Location = appConf.WindowConf.CanvasSizeDialogLocation
@@ -270,15 +270,15 @@ Public Class MainForm
         End Using
     End Sub
 
-    Private Sub tsmiOpen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiOpen.Click
+    Private Sub TsmiOpen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiOpen.Click
         MessageBox.Show("ファイルは開けません。", My.Application.Info.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End Sub
 
-    Private Sub tsmiSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiSave.Click
+    Private Sub TsmiSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiSave.Click
         MessageBox.Show("保存できません。", My.Application.Info.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End Sub
 
-    Private Sub tsmiSaveAs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiSaveAs.Click
+    Private Sub TsmiSaveAs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiSaveAs.Click
         MessageBox.Show("[Alt]+[PrtScn]でスクリーンショットを撮ってなんとかしてください。", My.Application.Info.ProductName,
          MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
@@ -288,11 +288,11 @@ Public Class MainForm
         MessageBox.Show("今の色でガマンしてください。", My.Application.Info.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End Sub
 
-    Private Sub tsmiManual_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiManual.Click
+    Private Sub TsmiManual_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiManual.Click
         MessageBox.Show("自力で覚えましょう。", My.Application.Info.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Private Sub tsmiVersion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiVersion.Click
+    Private Sub TsmiVersion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiVersion.Click
         Using vf As New VersionForm()
             vf.ShowDialog()
         End Using
@@ -300,17 +300,17 @@ Public Class MainForm
 
 #Region "描画処理"
 
-    Private Sub pctCanvas_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pctCanvas.MouseDown
+    Private Sub PctCanvas_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pctCanvas.MouseDown
         drawing = True
         oldPoint = e.Location
     End Sub
 
-    Private Sub pctCanvas_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pctCanvas.MouseUp
+    Private Sub PctCanvas_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pctCanvas.MouseUp
         drawing = False
         pctCanvas.Invalidate()
     End Sub
 
-    Private Sub pctCanvas_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pctCanvas.MouseMove
+    Private Sub PctCanvas_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pctCanvas.MouseMove
         If drawing Then
             drawer.DrawLine(oldPoint, e.Location)
             oldPoint = e.Location
@@ -425,27 +425,27 @@ Public Class MainForm
 
 #Region "ペン幅の変更"
 
-    Private Sub tsmiWidth1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth1.Click
+    Private Sub TsmiWidth1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth1.Click
         SetPenWidth(1.0F)
     End Sub
 
-    Private Sub tsmiWidth2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth2.Click
+    Private Sub TsmiWidth2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth2.Click
         SetPenWidth(2.0F)
     End Sub
 
-    Private Sub tsmiWidth3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth3.Click
+    Private Sub TsmiWidth3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth3.Click
         SetPenWidth(3.0F)
     End Sub
 
-    Private Sub tsmiWidth4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth4.Click
+    Private Sub TsmiWidth4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth4.Click
         SetPenWidth(4.0F)
     End Sub
 
-    Private Sub tsmiWidth5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth5.Click
+    Private Sub TsmiWidth5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth5.Click
         SetPenWidth(5.0F)
     End Sub
 
-    Private Sub tsmiWidth10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth10.Click
+    Private Sub TsmiWidth10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsmiWidth10.Click
         SetPenWidth(10.0F)
     End Sub
 
